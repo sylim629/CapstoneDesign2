@@ -32,6 +32,7 @@ public class ServerManager {
 	}
 
 	public void loadServer() {
+		ScheduleManager.sharedInstance().deleteAllSchedules();
 		StringBuffer buffer = connectToServer("loadSchedule",
 				"&session_key=" + LoginManager.sharedInstance().getSessionKey());
 		try {
@@ -78,6 +79,8 @@ public class ServerManager {
 				"session_key=" + LoginManager.sharedInstance().getSessionKey() + "&title=" + s.getSubject()
 						+ "&content=" + s.getContent() + "&startdate=" + s.getStartDate().getTime() + "&enddate="
 						+ s.getEndDate().getTime() + "&tagged=" + taggedFriends);
+		
+		loadServer();
 	}
 
 	public void modifyServer(int scheduleID) {
@@ -86,11 +89,18 @@ public class ServerManager {
 		for (int i = 1; i < s.getTaggedFriends().size(); i++) {
 			taggedFriends += s.getTaggedFriends() + "|";
 		}
+		
 		@SuppressWarnings("unused")
 		StringBuffer buffer = connectToServer("modifySchedule",
 				"session_key=" + LoginManager.sharedInstance().getSessionKey() + "&id=" + s.getServerID() + "&title="
 						+ s.getSubject() + "&content=" + s.getContent() + "&startdate=" + s.getStartDate().getTime()
 						+ "&enddate=" + s.getEndDate().getTime() + "&tagged=" + taggedFriends);
+	}
+
+	public void deleteServer(int scheduleID) {		
+		@SuppressWarnings("unused")
+		StringBuffer buffer = connectToServer("deleteSchedule",
+				"id=" + scheduleID + "&session_key=" + LoginManager.sharedInstance().getSessionKey());
 	}
 
 	public StringBuffer connectToServer(String index, String contentToWrite) {

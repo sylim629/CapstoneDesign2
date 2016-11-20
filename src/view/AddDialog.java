@@ -284,7 +284,8 @@ public class AddDialog extends JDialog {
 				}
 
 				if (schedule != null) {
-					ScheduleManager.sharedInstance().updateSchedule(newSchedule);
+					newSchedule.setIndex(schedule.getIndex());
+					ScheduleManager.sharedInstance().updateSchedule(newSchedule, newSchedule.getIndex());
 					ServerManager.sharedInstance().modifyServer(Integer.parseInt(schedule.getServerID()));
 				} else {
 					ScheduleManager.sharedInstance().addSchedule(newSchedule);
@@ -301,13 +302,10 @@ public class AddDialog extends JDialog {
 			deleteButton.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent arg0) {
-					boolean isDeleted = ScheduleManager.sharedInstance()
-							.deleteSchedule(Integer.parseInt(schedule.getServerID()));
-					if (isDeleted) {
-						// TODO
-						// ServerManager.sharedInstance().deleteServer(Integer.parseInt(schedule.getServerID()));
-					}
-
+					String id = schedule.getServerID();
+					boolean isDeleted = ScheduleManager.sharedInstance().deleteSchedule(schedule);
+					if (isDeleted)
+						ServerManager.sharedInstance().deleteServer(Integer.parseInt(id));
 					setVisible(false);
 				}
 			});
