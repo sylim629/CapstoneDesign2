@@ -112,7 +112,7 @@ public class DayDialog extends JDialog {
 		headerPanel = new JPanel();
 		headerPanel.setLayout(new BorderLayout());
 		headerPanel.setBorder(null);
-		headerPanel.setBackground(new Color(0xDD9787));								// Background Color of Header
+		headerPanel.setBackground(new Color(0xDD9787));
 		JLabel timeLabel = new JLabel();
 		timeLabel.setBorder(new EmptyBorder(0, 15, 0, 0));
 		timeLabel.setText(String.format("%04d. %02d. %02d.", yearNumber, monthNumber, dayNumber));
@@ -205,7 +205,7 @@ public class DayDialog extends JDialog {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				System.out.println("TOUCH START");
-				Schedule s = ScheduleManager.sharedInstance().getSchedule(Integer.parseInt(e.getComponent().getName()));
+//				Schedule s = ScheduleManager.sharedInstance().getSchedule(Integer.parseInt(e.getComponent().getName()));
 
 				AddDialog dialog = new AddDialog(frameBody, s);
 				dialog.setVisible(true);

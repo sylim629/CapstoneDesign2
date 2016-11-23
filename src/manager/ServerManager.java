@@ -70,8 +70,8 @@ public class ServerManager {
 		Schedule s = scheduleList.get(scheduleList.size() - 1);
 
 		String taggedFriends = "";
-		for (int i = 1; i < s.getTaggedFriends().size(); i++) {
-			taggedFriends += s.getTaggedFriends() + "|";
+		for (int i = 0; i < s.getTaggedFriends().size(); i++) {
+			taggedFriends += s.getTaggedFriends().get(i) + "|";
 		}
 
 		@SuppressWarnings("unused")

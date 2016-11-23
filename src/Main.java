@@ -48,6 +48,7 @@ public class Main extends JFrame {
 		calendar.setMinimumSize(new Dimension(340, 510));
 		calendar.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		calendar.setVisible(true);
+		System.out.println("READY\n");
 		calendar.addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosed(WindowEvent e) {

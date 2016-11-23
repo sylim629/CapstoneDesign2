@@ -55,6 +55,8 @@ public class AddDialog extends JDialog {
 
 	private JButton tagAtButton;
 	private JLabel friendListLabel;
+	
+	private JLabel spendingLabel;
 
 	private Date startDate;
 	private Date endDate;
@@ -91,7 +93,7 @@ public class AddDialog extends JDialog {
 		}
 
 		setHeaderPanel();
-		setBodyPanel();
+		setBodyPanel(year);
 	}
 
 	private void setHeaderPanel() {
@@ -191,7 +193,7 @@ public class AddDialog extends JDialog {
 		this.add(firstBody, BorderLayout.NORTH);
 	}
 
-	private void setBodyPanel() {
+	private void setBodyPanel(int year) {
 		JPanel memoPanel = new JPanel();
 		memoPanel.setBorder(new EmptyBorder(10, 10, 0, 10));
 		memoPanel.setLayout(new BorderLayout());
@@ -216,16 +218,22 @@ public class AddDialog extends JDialog {
 		friendListLabel = new JLabel();
 		tagPanel.add(friendListLabel);
 
-		ArrayList<String> taggedFriendsID = new ArrayList<>();
-		FriendsList friendsList = new FriendsList();
-		if (schedule != null) {
-			taggedFriendsID = schedule.getTaggedFriends();
+		if (year == -1) {
+			FriendsList friendsList = new FriendsList();
+			ArrayList<String> taggedFriendsId = schedule.getTaggedFriends();
 			String names = "";
-			for (int i = 0; i < taggedFriendsID.size(); i++) {
-				names += friendsList.getFriendName(taggedFriendsID.get(i)) + ",";
+			for (int i = 0; i < taggedFriendsId.size(); i++) {
+				names += friendsList.getFriendName(taggedFriendsId.get(i)) + ",";
 			}
 			friendListLabel.setText(names);
 		}
+		
+		JPanel spendingPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+		spendingLabel = new JLabel();
+		String money = "25000원-시험";
+		spendingLabel.setText("사용금액 : " + money);
+		spendingPanel.add(spendingLabel);
+		
 		tagAtButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				TagListView tagFriendsDialog = new TagListView(componentParent, new TagListView.Callbacks() {
@@ -246,6 +254,7 @@ public class AddDialog extends JDialog {
 		tagAtButton.addKeyListener(keyListener);
 
 		bottomPanel.add(tagPanel, BorderLayout.NORTH);
+		bottomPanel.add(spendingPanel, BorderLayout.EAST);
 
 		JPanel buttonPanel = new JPanel();
 		if (schedule != null)
