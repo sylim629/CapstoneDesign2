@@ -78,6 +78,7 @@ public class ScheduleManager {
 		newSchedule.setEndDate(schedule.getEndDate());
 		newSchedule.setContent(schedule.getContent());
 		newSchedule.setTaggedFriends(schedule.getTaggedFriends());
+		newSchedule.setMoneySpent(schedule.getMoneySpent());
 
 		scheduleList.add(newSchedule);
 

@@ -113,12 +113,15 @@ public class DayDialog extends JDialog {
 		headerPanel.setLayout(new BorderLayout());
 		headerPanel.setBorder(null);
 		headerPanel.setBackground(new Color(0xDD9787));
-		JLabel timeLabel = new JLabel();
-		timeLabel.setBorder(new EmptyBorder(0, 15, 0, 0));
-		timeLabel.setText(String.format("%04d. %02d. %02d.", yearNumber, monthNumber, dayNumber));
-		timeLabel.setFont(new Font("THEJung110", 0, 24));
-		timeLabel.setForeground(Color.WHITE);
-		headerPanel.add(timeLabel, BorderLayout.WEST);
+		
+		// TODO
+		JLabel timeMoneyLabel = new JLabel();
+		timeMoneyLabel.setBorder(new EmptyBorder(0, 15, 0, 0));
+		timeMoneyLabel.setText(String.format("%04d. %02d. %02d.", yearNumber, monthNumber, dayNumber));
+		timeMoneyLabel.setFont(new Font("THEJung110", 0, 24));
+		timeMoneyLabel.setForeground(Color.WHITE);
+		
+		headerPanel.add(timeMoneyLabel, BorderLayout.WEST);
 
 		ImageIcon imgIcon = new ImageIcon("add.png");
 		addButton = new JLabel(new ImageIcon(imgIcon.getImage().getScaledInstance(26, 26, Image.SCALE_DEFAULT)));
