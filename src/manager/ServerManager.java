@@ -57,7 +57,6 @@ public class ServerManager {
 						taggedFriends.add((String) ((JSONObject) taggedFriendsJson.get(j)).get("user_id"));
 					}
 					s.setTaggedFriends(taggedFriends);
-					s.setMoneySpent((String) obj.get("money_spent"));
 					ScheduleManager.sharedInstance().addSchedule(s);
 				}
 			}
