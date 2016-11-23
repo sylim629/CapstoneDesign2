@@ -205,7 +205,6 @@ public class DayDialog extends JDialog {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				System.out.println("TOUCH START");
-//				Schedule s = ScheduleManager.sharedInstance().getSchedule(Integer.parseInt(e.getComponent().getName()));
 
 				AddDialog dialog = new AddDialog(frameBody, s);
 				dialog.setVisible(true);
