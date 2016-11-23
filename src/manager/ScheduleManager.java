@@ -72,13 +72,13 @@ public class ScheduleManager {
 
 		Schedule newSchedule = new Schedule();
 		newSchedule.setServerID(schedule.getServerID());
-		newSchedule.setIndex(scheduleList.size());
+		// newSchedule.setIndex(scheduleList.size());
 		newSchedule.setSubject(schedule.getSubject());
 		newSchedule.setStartDate(schedule.getStartDate());
 		newSchedule.setEndDate(schedule.getEndDate());
 		newSchedule.setContent(schedule.getContent());
 		newSchedule.setTaggedFriends(schedule.getTaggedFriends());
-//		newSchedule.setMoneySpent(schedule.getMoneySpent());
+		// newSchedule.setMoneySpent(schedule.getMoneySpent());
 
 		scheduleList.add(newSchedule);
 
@@ -88,15 +88,20 @@ public class ScheduleManager {
 		return newSchedule.copy();
 	}
 
-	public void updateSchedule(Schedule schedule, int index) {
+	public void updateSchedule(Schedule schedule, int serverID) {
 		if (schedule == null)
 			return;
 
-		scheduleList.get(index).setContent(schedule.getContent());
-		scheduleList.get(index).setEndDate(schedule.getEndDate());
-		scheduleList.get(index).setStartDate(schedule.getStartDate());
-		scheduleList.get(index).setSubject(schedule.getSubject());
-		scheduleList.get(index).setTaggedFriends(schedule.getTaggedFriends());
+		for (int i = 0; i < scheduleList.size(); i++) {
+			if (scheduleList.get(i).getServerID().equals(schedule.getServerID())) {
+				scheduleList.get(i).setContent(schedule.getContent());
+				scheduleList.get(i).setEndDate(schedule.getEndDate());
+				scheduleList.get(i).setStartDate(schedule.getStartDate());
+				scheduleList.get(i).setSubject(schedule.getSubject());
+				scheduleList.get(i).setTaggedFriends(schedule.getTaggedFriends());
+				break;
+			}
+		}
 
 		if (scheduleCallback != null)
 			scheduleCallback.onUpdatedSchedule(schedule);
@@ -104,17 +109,20 @@ public class ScheduleManager {
 
 	public boolean deleteSchedule(Schedule schedule) {
 		boolean isDeleted = false;
-		int index = schedule.getIndex();
 
-		if (index >= 0 && index < scheduleList.size()) {
-			scheduleList.remove(index);
-			isDeleted = true;
+		for (int i = 0; i < scheduleList.size(); i++) {
+			if (scheduleList.get(i).getServerID().equals(schedule.getServerID())) {
+				scheduleList.remove(i);
+				isDeleted = true;
+				break;
+			}
 		}
+
 		if (isDeleted) {
 			if (scheduleCallback != null)
 				scheduleCallback.onDeletedSchedule(schedule);
 		}
-		
+
 		return isDeleted;
 	}
 

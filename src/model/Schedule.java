@@ -5,7 +5,7 @@ import java.util.Date;
 
 public class Schedule {
 	private String serverID;
-	private int index;
+//	private int index;
 	private String subject;
 	private String content;
 	private Date startDate;
@@ -15,7 +15,7 @@ public class Schedule {
 
 	public Schedule() {
 		serverID = String.valueOf(-1);
-		index = -1;
+//		index = -1;
 		subject = "";
 		content = "";
 		startDate = new Date(0);
@@ -42,9 +42,9 @@ public class Schedule {
 		return this.serverID;
 	}
 
-	public int getIndex() {
-		return this.index;
-	}
+//	public int getIndex() {
+//		return this.index;
+//	}
 
 	public String getSubject() {
 		return this.subject;
@@ -70,9 +70,9 @@ public class Schedule {
 		this.serverID = id;
 	}
 
-	public void setIndex(int index) {
-		this.index = index;
-	}
+//	public void setIndex(int index) {
+//		this.index = index;
+//	}
 
 	public void setSubject(String subject) {
 		this.subject = subject;

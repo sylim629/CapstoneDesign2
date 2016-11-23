@@ -165,7 +165,7 @@ public class DayDialog extends JDialog {
 				removeAllContent();
 				addAllContent();
 				for (int i = 0; i < scheduleJPanels.size(); i++) {
-					if (Integer.parseInt(scheduleJPanels.get(i).getName()) == schedule.getIndex()) {
+					if (scheduleJPanels.get(i).getName().equals(schedule.getServerID())) {
 						updateContent(scheduleJPanels.get(i), schedule);
 						break;
 					}
@@ -238,7 +238,7 @@ public class DayDialog extends JDialog {
 		subjectPanel.add(subjectLabel);
 
 		content.add(subjectPanel, BorderLayout.CENTER);
-		content.setName(Integer.toString(s.getIndex()));
+		content.setName(s.getServerID());
 		content.addMouseListener(buttonListner);
 
 		scrollPanel.setVisible(false);

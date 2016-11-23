@@ -46,7 +46,6 @@ public class ServerManager {
 
 					Schedule s = new Schedule();
 					s.setServerID((String) obj.get("id"));
-					s.setIndex(i);
 					s.setSubject((String) obj.get("title"));
 					s.setContent((String) obj.get("content"));
 					s.setStartDate(new Date(Long.parseLong((String) obj.get("startdate"))));
