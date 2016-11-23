@@ -11,7 +11,7 @@ public class Schedule {
 	private Date startDate;
 	private Date endDate;
 	private ArrayList<String> taggedFriends;
-	private String moneySpent;
+//	private String moneySpent;
 
 	public Schedule() {
 		serverID = String.valueOf(-1);
@@ -21,7 +21,7 @@ public class Schedule {
 		startDate = new Date(0);
 		endDate = new Date(0);
 		taggedFriends = new ArrayList<String>();
-		moneySpent = "0원";
+//		moneySpent = "0원";
 	}
 
 	public Schedule(Schedule schedule) {
@@ -31,7 +31,7 @@ public class Schedule {
 		this.startDate = schedule.startDate;
 		this.endDate = schedule.endDate;
 		this.taggedFriends = schedule.taggedFriends;
-		this.moneySpent = schedule.moneySpent;
+//		this.moneySpent = schedule.moneySpent;
 	}
 
 	public Schedule copy() {
@@ -119,11 +119,11 @@ public class Schedule {
 				+ startDate.toString() + "\", endDate:\"" + endDate.toString() + "\" } }");
 	}
 
-	public String getMoneySpent() {
-		return moneySpent;
-	}
+//	public String getMoneySpent() {
+//		return moneySpent;
+//	}
 
-	public void setMoneySpent(String moneySpent) {
-		this.moneySpent = moneySpent;
-	}
+//	public void setMoneySpent(String moneySpent) {
+//		this.moneySpent = moneySpent;
+//	}
 }

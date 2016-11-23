@@ -56,7 +56,7 @@ public class AddDialog extends JDialog {
 	private JButton tagAtButton;
 	private JLabel friendListLabel;
 	
-	private JLabel spendingLabel;
+//	private JLabel spendingLabel;
 
 	private Date startDate;
 	private Date endDate;
@@ -216,9 +216,9 @@ public class AddDialog extends JDialog {
 		friendListLabel = new JLabel();
 		tagPanel.add(friendListLabel);
 		
-		JPanel spendingPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
-		spendingLabel = new JLabel();
-		spendingPanel.add(spendingLabel);
+//		JPanel spendingPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+//		spendingLabel = new JLabel();
+//		spendingPanel.add(spendingLabel);
 
 		if (year == -1) {
 			FriendsList friendsList = new FriendsList();
@@ -229,7 +229,7 @@ public class AddDialog extends JDialog {
 			}
 			friendListLabel.setText(names);
 			
-			spendingLabel.setText("이 날 지출한 총 금액 : " + schedule.getMoneySpent());
+//			spendingLabel.setText("이 날 지출한 총 금액 : " + schedule.getMoneySpent());
 		}
 		
 		tagAtButton.addActionListener(new ActionListener() {
@@ -252,7 +252,7 @@ public class AddDialog extends JDialog {
 		tagAtButton.addKeyListener(keyListener);
 
 		bottomPanel.add(tagPanel, BorderLayout.NORTH);
-		bottomPanel.add(spendingPanel, BorderLayout.EAST);
+//		bottomPanel.add(spendingPanel, BorderLayout.EAST);
 
 		JPanel buttonPanel = new JPanel();
 		if (schedule != null)
