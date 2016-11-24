@@ -56,7 +56,7 @@ public class ServerManager {
 						taggedFriends.add((String) ((JSONObject) taggedFriendsJson.get(j)).get("user_id"));
 					}
 					s.setTaggedFriends(taggedFriends);
-//					s.setMoneySpent((String) obj.get("money_spent"));
+					// s.setMoneySpent((String) obj.get("money_spent"));
 					ScheduleManager.sharedInstance().addSchedule(s);
 				}
 			}
@@ -67,7 +67,6 @@ public class ServerManager {
 
 	public void saveServer() {
 		ArrayList<Schedule> scheduleList = ScheduleManager.sharedInstance().getScheduleList();
-		
 		Schedule s = ScheduleManager.sharedInstance().getScheduleAtServerID("-1");
 
 		String taggedFriends = "";
@@ -75,7 +74,6 @@ public class ServerManager {
 			taggedFriends += s.getTaggedFriends().get(i) + "|";
 		}
 
-		//@SuppressWarnings("unused")
 		StringBuffer buffer = connectToServer("saveSchedule",
 				"session_key=" + LoginManager.sharedInstance().getSessionKey() + "&title=" + s.getSubject()
 						+ "&content=" + s.getContent() + "&startdate=" + s.getStartDate().getTime() + "&enddate="
@@ -86,19 +84,19 @@ public class ServerManager {
 			JSONObject data = (JSONObject) parser.parse(buffer.toString());
 			if (Long.parseLong((String) data.get("code")) == 200) {
 				data = (JSONObject) data.get("subject");
-				scheduleList.get(scheduleList.size()-1).setServerID(""+data.get("id"));
+				scheduleList.get(scheduleList.size() - 1).setServerID("" + data.get("id"));
 			}
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-		
+
 	}
 
 	public void modifyServer(int scheduleID) {
 		Schedule s = ScheduleManager.sharedInstance().getScheduleAtServerID(String.valueOf(scheduleID));
 		String taggedFriends = "";
 		for (int i = 1; i < s.getTaggedFriends().size(); i++) {
-			taggedFriends += s.getTaggedFriends() + "|";
+			taggedFriends += s.getTaggedFriends().get(i) + "|";
 		}
 
 		@SuppressWarnings("unused")
