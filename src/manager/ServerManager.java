@@ -32,7 +32,6 @@ public class ServerManager {
 	}
 
 	public void loadServer() {
-		ScheduleManager.sharedInstance().deleteAllSchedules();
 		StringBuffer buffer = connectToServer("loadSchedule",
 				"&session_key=" + LoginManager.sharedInstance().getSessionKey());
 		try {
@@ -56,7 +55,38 @@ public class ServerManager {
 						taggedFriends.add((String) ((JSONObject) taggedFriendsJson.get(j)).get("user_id"));
 					}
 					s.setTaggedFriends(taggedFriends);
-					// s.setMoneySpent((String) obj.get("money_spent"));
+					ScheduleManager.sharedInstance().addSchedule(s);
+				}
+			}
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void loadServer_moneyOnly(String phoneNum) {
+		StringBuffer buffer = connectToServer("loadSchedule",
+				"&session_key=" + LoginManager.sharedInstance().getSessionKey() + "&phone_num=" + phoneNum);
+		try {
+			JSONParser parser = new JSONParser();
+			JSONObject data = (JSONObject) parser.parse(buffer.toString());
+			if (Long.parseLong((String) data.get("code")) == 200) {
+				data = (JSONObject) data.get("data");
+				JSONArray schedules = (JSONArray) data.get("schedule");
+				for (int i = 0; i < schedules.size(); i++) {
+					JSONObject obj = (JSONObject) schedules.get(i);
+
+					Schedule s = new Schedule();
+					s.setServerID((String) obj.get("id"));
+					s.setSubject((String) obj.get("title"));
+					s.setContent((String) obj.get("content"));
+					s.setStartDate(new Date(Long.parseLong((String) obj.get("startdate"))));
+					s.setEndDate(new Date(Long.parseLong((String) obj.get("enddate"))));
+					JSONArray taggedFriendsJson = (JSONArray) obj.get("tagged");
+					ArrayList<String> taggedFriends = new ArrayList<>();
+					for (int j = 0; j < taggedFriendsJson.size(); j++) {
+						taggedFriends.add((String) ((JSONObject) taggedFriendsJson.get(j)).get("user_id"));
+					}
+					s.setTaggedFriends(taggedFriends);
 					ScheduleManager.sharedInstance().addSchedule(s);
 				}
 			}

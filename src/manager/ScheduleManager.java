@@ -72,13 +72,11 @@ public class ScheduleManager {
 
 		Schedule newSchedule = new Schedule();
 		newSchedule.setServerID(schedule.getServerID());
-		// newSchedule.setIndex(scheduleList.size());
 		newSchedule.setSubject(schedule.getSubject());
 		newSchedule.setStartDate(schedule.getStartDate());
 		newSchedule.setEndDate(schedule.getEndDate());
 		newSchedule.setContent(schedule.getContent());
 		newSchedule.setTaggedFriends(schedule.getTaggedFriends());
-		// newSchedule.setMoneySpent(schedule.getMoneySpent());
 
 		scheduleList.add(newSchedule);
 
@@ -124,10 +122,6 @@ public class ScheduleManager {
 		}
 
 		return isDeleted;
-	}
-
-	public void deleteAllSchedules() {
-		scheduleList = new ArrayList<>();
 	}
 
 	public void setEventListener(Callbacks callback) {

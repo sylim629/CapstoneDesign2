@@ -49,6 +49,13 @@ public class Main extends JFrame {
 		calendar.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		calendar.setVisible(true);
 		System.out.println("READY\n");
+		
+		// TODO 핸드폰 번호 입력 UI
+		// MoneyInfo에 핸드폰번호 저장
+		// P2P 인증번호 실시
+		// dummy phone number = 01072583303
+		// 서버에서 사용 금액 불러오기 -> MoneyManager, ServerManager->loadServer_moneyOnly(String phoneNum);
+		
 		calendar.addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosed(WindowEvent e) {
