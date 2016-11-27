@@ -95,7 +95,7 @@ public class ServerManager {
 	public void modifyServer(int scheduleID) {
 		Schedule s = ScheduleManager.sharedInstance().getScheduleAtServerID(String.valueOf(scheduleID));
 		String taggedFriends = "";
-		for (int i = 1; i < s.getTaggedFriends().size(); i++) {
+		for (int i = 0; i < s.getTaggedFriends().size(); i++) {
 			taggedFriends += s.getTaggedFriends().get(i) + "|";
 		}
 
