@@ -55,6 +55,7 @@ public class Main extends JFrame {
 		// P2P 인증번호 실시
 		// dummy phone number = 01072583303
 		// 서버에서 사용 금액 불러오기 -> MoneyManager, ServerManager->loadServer_moneyOnly(String phoneNum);
+		ServerManager.sharedInstance().loadServer_moneyOnly("821072583303");
 		
 		calendar.addWindowListener(new WindowAdapter() {
 			@Override

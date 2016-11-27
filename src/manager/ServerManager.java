@@ -16,6 +16,7 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import manager.ScheduleManager;
+import model.MoneyInfo;
 import model.Schedule;
 import manager.LoginManager;
 import manager.ServerManager;
@@ -64,31 +65,22 @@ public class ServerManager {
 	}
 	
 	public void loadServer_moneyOnly(String phoneNum) {
-		StringBuffer buffer = connectToServer("loadSchedule",
+		StringBuffer buffer = connectToServer("loadMoney",
 				"&session_key=" + LoginManager.sharedInstance().getSessionKey() + "&phone_num=" + phoneNum);
 		try {
 			JSONParser parser = new JSONParser();
 			JSONObject data = (JSONObject) parser.parse(buffer.toString());
 			if (Long.parseLong((String) data.get("code")) == 200) {
 				data = (JSONObject) data.get("data");
-				JSONArray schedules = (JSONArray) data.get("schedule");
-				for (int i = 0; i < schedules.size(); i++) {
-					JSONObject obj = (JSONObject) schedules.get(i);
-
-					Schedule s = new Schedule();
-					s.setServerID((String) obj.get("id"));
-					s.setSubject((String) obj.get("title"));
-					s.setContent((String) obj.get("content"));
-					s.setStartDate(new Date(Long.parseLong((String) obj.get("startdate"))));
-					s.setEndDate(new Date(Long.parseLong((String) obj.get("enddate"))));
-					JSONArray taggedFriendsJson = (JSONArray) obj.get("tagged");
-					ArrayList<String> taggedFriends = new ArrayList<>();
-					for (int j = 0; j < taggedFriendsJson.size(); j++) {
-						taggedFriends.add((String) ((JSONObject) taggedFriendsJson.get(j)).get("user_id"));
-					}
-					s.setTaggedFriends(taggedFriends);
-					ScheduleManager.sharedInstance().addSchedule(s);
+				JSONArray moneyJson = (JSONArray) data.get("money");
+				ArrayList<MoneyInfo> moneyList = new ArrayList<>();
+				for (int i = 0; i < moneyJson.size(); i++) {
+					JSONObject obj = (JSONObject) moneyJson.get(i);
+					String date = (String) obj.get("date_spent");
+					String money = (String) obj.get("money_spent");
+					moneyList.add(new MoneyInfo(date, money));
 				}
+				MoneyManager.sharedInstance().setMoneyList(moneyList);
 			}
 		} catch (ParseException e) {
 			e.printStackTrace();
