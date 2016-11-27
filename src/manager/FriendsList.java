@@ -3,6 +3,7 @@ package manager;
 import java.util.List;
 
 import com.restfb.DefaultFacebookClient;
+import com.restfb.FacebookClient;
 import com.restfb.Parameter;
 import com.restfb.exception.FacebookOAuthException;
 import com.restfb.types.User;
@@ -39,6 +40,7 @@ public class FriendsList {
 				return user.getId();
 			}
 		}
+		
 		return "fail";
 	}
 
@@ -48,6 +50,13 @@ public class FriendsList {
 			if (user.getId().equals(id))
 				return user.getName();
 		}
-		return "fail";
+		
+	     String accessToken = LoginManager.sharedInstance().getaccessTok();
+	      FacebookClient fbClient = new DefaultFacebookClient(accessToken);
+	      User me = fbClient.fetchObject("me", User.class, Parameter.with("fields", "first_name,last_name"));
+	      String name = me.getLastName()+" "+me.getFirstName();   // facebook user id
+
+		
+		return name;
 	}
 }
