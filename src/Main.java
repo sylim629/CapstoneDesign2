@@ -12,6 +12,7 @@ import javax.swing.JFrame;
 import manager.ServerManager;
 import manager.FriendsList;
 import manager.LoginManager;
+import manager.MoneyManager;
 import view.MonthView;
 
 public class Main extends JFrame {
@@ -56,6 +57,9 @@ public class Main extends JFrame {
 		// dummy phone number = 01072583303
 		// 서버에서 사용 금액 불러오기 -> MoneyManager, ServerManager->loadServer_moneyOnly(String phoneNum);
 		ServerManager.sharedInstance().loadServer_moneyOnly("821072583303");
+		// TEST begin
+		System.out.println(MoneyManager.sharedInstance().getMoney("11/11"));
+		// TEST end
 		
 		calendar.addWindowListener(new WindowAdapter() {
 			@Override
