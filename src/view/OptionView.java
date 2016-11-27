@@ -1,10 +1,14 @@
 package view;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Container;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -19,37 +23,54 @@ public class OptionView extends JFrame {
 	JButton skip = new JButton("SKIP");
 	JButton next = new JButton("NEXT");
 	JButton howTo = new JButton("상세설명");
-	
-	public OptionView (){
+
+	public OptionView() {
 		super("PiCalendar 추가 기능!");
 		
+		// font 입히기
+		description.setFont(new Font("THEJung110", 0, 15));
+		skip.setFont(new Font("THEJung110", 0, 15));
+		next.setFont(new Font("THEJung110", 0, 15));
+		howTo.setFont(new Font("THEJung110", 0, 15));
+
 		JPanel buttons = new JPanel();
 		buttons.setLayout(new FlowLayout());
 		buttons.add(skip);
 		buttons.add(howTo);
 		buttons.add(next);
 		buttons.setBorder(new EmptyBorder(15, 15, 15, 15));
-		
-		//컴포넌트를 넣을 컨테이너 구하기
+
+		// 컴포넌트를 넣을 컨테이너 구하기
 		Container container = this.getContentPane();
-		
+
 		description.setBorder(new EmptyBorder(15, 15, 15, 15));
-		
-		//컴포넌트를 컨테이너에 추가
+
+		// 컴포넌트를 컨테이너에 추가
 		container.add(description, BorderLayout.NORTH);
 		container.add(buttons, BorderLayout.SOUTH);
-		
-		this.setSize(300,300);
+
+		this.setSize(300, 300);
 		this.setVisible(true);
 		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		
+
 		// actionListeners
-		
+
 		next.addActionListener(new ActionListener() {
-			   public void actionPerformed(ActionEvent e) {
-			      @SuppressWarnings("unused")
-				PairView pair = new PairView();  
-			   }
-			});
+			public void actionPerformed(ActionEvent e) {
+				PairView pair = new PairView();
+			}
+		});
+		
+		skip.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
+		
+		howTo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				HowToView howTo = new HowToView();
+			}
+		});
 	}
 }
