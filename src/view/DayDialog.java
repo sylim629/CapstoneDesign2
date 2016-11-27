@@ -28,6 +28,7 @@ import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.MatteBorder;
 
+import manager.MoneyManager;
 import manager.ScheduleManager;
 import model.Schedule;
 
@@ -113,7 +114,7 @@ public class DayDialog extends JDialog {
 		headerPanel.setLayout(new BorderLayout());
 		headerPanel.setBorder(null);
 		headerPanel.setBackground(new Color(0xDD9787));
-		
+				
 		JLabel timeLabel = new JLabel();
 		timeLabel.setBorder(new EmptyBorder(0, 15, 0, 0));
 		timeLabel.setText(String.format("%04d. %02d. %02d.", yearNumber, monthNumber, dayNumber));
@@ -121,7 +122,22 @@ public class DayDialog extends JDialog {
 		timeLabel.setForeground(Color.WHITE);
 		
 		headerPanel.add(timeLabel, BorderLayout.WEST);
-
+		
+		// 금액 추가
+		
+		JLabel moneyLabel = new JLabel();
+		moneyLabel.setBorder(new EmptyBorder(0, 200, 0, 0));
+		String date = String.format("%02d/%02d", monthNumber, dayNumber);
+		System.out.println("day dialog [date] : " + date);
+		String money = MoneyManager.sharedInstance().getMoney(date);
+		System.out.println("day dialog [money] : " + money);
+		moneyLabel.setText(money);
+		moneyLabel.setFont(new Font("THEJung110", 0, 24));
+		moneyLabel.setForeground(Color.WHITE);
+		headerPanel.add(moneyLabel, BorderLayout.CENTER);
+		
+		// 금액 추가 end
+		
 		ImageIcon imgIcon = new ImageIcon("add.png");
 		addButton = new JLabel(new ImageIcon(imgIcon.getImage().getScaledInstance(26, 26, Image.SCALE_DEFAULT)));
 		addButton.setPreferredSize(new Dimension(50, 26));
