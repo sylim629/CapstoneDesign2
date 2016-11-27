@@ -56,8 +56,6 @@ public class Main extends JFrame {
 		// TODO 핸드폰 번호 입력 UI
 		@SuppressWarnings("unused")
 		OptionView option = new OptionView();
-		String phoneNum = PairManager.sharedInstance().getPhoneNumber();
-		// System.out.println(phoneNum);
 		// MoneyInfo에 핸드폰번호 저장
 		// P2P 인증번호 실시
 		// dummy phone number = 01072583303
