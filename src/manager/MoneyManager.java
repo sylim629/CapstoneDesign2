@@ -33,10 +33,16 @@ public class MoneyManager {
 				if (totalMoney.equals("0원")) {
 					totalMoney = moneyList.get(i).getMoney();
 				} else {
-					String tokens[] = moneyList.get(i).getMoney().split(",");
-					int moreMoney = Integer.parseInt(tokens[0] + tokens[1].substring(0, tokens[1].length() - 1));
-					tokens = totalMoney.split(",");
-					int tempTotalMoney = Integer.parseInt(tokens[0] + tokens[1].substring(0, tokens[1].length() - 1));
+					String tokens[] = moneyList.get(i).getMoney().split(",|\\원");
+					String tempMoney = "";
+					for (int j = 0; j < tokens.length; j++)
+						tempMoney += tokens[j];
+					int moreMoney = Integer.parseInt(tempMoney);
+					tokens = totalMoney.split(",|\\원");
+					tempMoney = "";
+					for (int j = 0; j < tokens.length; j++)
+						tempMoney += tokens[j];
+					int tempTotalMoney = Integer.parseInt(tempMoney);
 					tempTotalMoney += moreMoney;
 					totalMoney = NumberFormat.getNumberInstance(Locale.US).format(tempTotalMoney) + "원";
 				}
