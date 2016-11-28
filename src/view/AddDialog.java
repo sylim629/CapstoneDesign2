@@ -16,6 +16,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
@@ -26,6 +27,8 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.MatteBorder;
 
+import manager.StickerManager;
+import view.StickerSelector;
 import manager.FriendsList;
 import manager.ScheduleManager;
 import manager.ServerManager;
@@ -56,10 +59,9 @@ public class AddDialog extends JDialog {
 	private JButton tagAtButton;
 	private JLabel friendListLabel;
 
-	// private JLabel spendingLabel;
-
 	private Date startDate;
 	private Date endDate;
+	private int sticker;
 
 	private Component componentParent;
 
@@ -184,6 +186,23 @@ public class AddDialog extends JDialog {
 
 		stickerButton = new JButton();
 		stickerButton.setPreferredSize(new Dimension(56, 56));
+		if (sticker != 0) {
+			stickerButton.setIcon(new ImageIcon(StickerManager.sharedInstance().getStickerURL(sticker)));
+		}
+		stickerButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				StickerSelector stickerSelector = new StickerSelector(componentParent, new StickerSelector.Callbacks() {
+
+					@Override
+					public void onUpdatedDate(Integer selectedID) {
+						stickerButton.setIcon(new ImageIcon(StickerManager.sharedInstance().getStickerURL(selectedID)));
+						sticker = selectedID;
+					}
+				});
+				stickerSelector.setVisible(true);
+			}
+		});
+		stickerButton.addKeyListener(keyListener);
 
 		JPanel firstBody = new JPanel();
 		firstBody.setLayout(new FlowLayout());

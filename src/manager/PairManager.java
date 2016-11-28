@@ -1,6 +1,5 @@
 package manager;
 
-import model.MoneyInfo;
 
 public class PairManager {
 	private static PairManager singleton = new PairManager();

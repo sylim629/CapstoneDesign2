@@ -12,8 +12,6 @@ import javax.swing.JFrame;
 import manager.ServerManager;
 import manager.FriendsList;
 import manager.LoginManager;
-import manager.MoneyManager;
-import manager.PairManager;
 import view.MonthView;
 import view.OptionView;
 
@@ -53,15 +51,8 @@ public class Main extends JFrame {
 		calendar.setVisible(true);
 		System.out.println("READY\n");
 		
-		// TODO 핸드폰 번호 입력 UI
 		@SuppressWarnings("unused")
 		OptionView option = new OptionView();
-		// MoneyInfo에 핸드폰번호 저장
-		// P2P 인증번호 실시
-		// dummy phone number = 01072583303
-		// 서버에서 사용 금액 불러오기 -> MoneyManager, ServerManager->loadServer_moneyOnly(String phoneNum);
-		
-		//ServerManager.sharedInstance().loadServer_moneyOnly(phoneNum); --> PairView.java 로 ActionListener 안으로 이동
 		
 		calendar.addWindowListener(new WindowAdapter() {
 			@Override
