@@ -26,25 +26,30 @@ public class MoneyManager {
 		this.moneyList = moneyList;
 	}
 
+	public void deleteMoneyList(){
+		
+		this.moneyList = new ArrayList<MoneyInfo>();
+	}
+	
 	public String getMoney(String date) {
-		String totalMoney = "0ì›";
+		String totalMoney = "0¿ø";
 		for (int i = 0; i < moneyList.size(); i++) {
 			if (moneyList.get(i).getDate().equals(date)) {
-				if (totalMoney.equals("0ì›")) {
+				if (totalMoney.equals("0¿ø")) {
 					totalMoney = moneyList.get(i).getMoney();
 				} else {
-					String tokens[] = moneyList.get(i).getMoney().split(",|\\ì›");
+					String tokens[] = moneyList.get(i).getMoney().split(",|\\¿ø");
 					String tempMoney = "";
 					for (int j = 0; j < tokens.length; j++)
 						tempMoney += tokens[j];
 					int moreMoney = Integer.parseInt(tempMoney);
-					tokens = totalMoney.split(",|\\ì›");
+					tokens = totalMoney.split(",|\\¿ø");
 					tempMoney = "";
 					for (int j = 0; j < tokens.length; j++)
 						tempMoney += tokens[j];
 					int tempTotalMoney = Integer.parseInt(tempMoney);
 					tempTotalMoney += moreMoney;
-					totalMoney = NumberFormat.getNumberInstance(Locale.US).format(tempTotalMoney) + "ì›";
+					totalMoney = NumberFormat.getNumberInstance(Locale.US).format(tempTotalMoney) + "¿ø";
 				}
 			}
 		}

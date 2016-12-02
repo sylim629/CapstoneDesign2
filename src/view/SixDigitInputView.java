@@ -18,9 +18,9 @@ import manager.ServerManager;
 
 public class SixDigitInputView extends JFrame {
 	JLabel label = new JLabel("휴대폰으로 보낸 인증번호를 입력하시오.");
-	JTextField enterDigit = new JTextField(10);
-	JLabel error = new JLabel("");
-	JButton enterButton = new JButton("확인");
+	   JTextField enterDigit = new JTextField(10);
+	   JLabel error = new JLabel("");
+	   JButton enterButton = new JButton("확인");
 
 	public SixDigitInputView() {
 		super("인증번호 입력");
@@ -51,7 +51,7 @@ public class SixDigitInputView extends JFrame {
 					VerifiedView vv = new VerifiedView();
 					dispose();
 				/*} else {
-					error.setText("확인 후 다시 입력하시오.");
+					error.setText("�솗�씤 �썑 �떎�떆 �엯�젰�븯�떆�삤.");
 					error.setFont(new Font("THEJung110", 0, 15));
 					error.setForeground(Color.RED);
 					enterDigit.setText("");

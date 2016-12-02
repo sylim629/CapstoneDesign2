@@ -29,7 +29,9 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.MatteBorder;
 
 import manager.MoneyManager;
+import manager.PairManager;
 import manager.ScheduleManager;
+import manager.ServerManager;
 import model.Schedule;
 
 public class DayDialog extends JDialog {
@@ -123,12 +125,15 @@ public class DayDialog extends JDialog {
 		
 		headerPanel.add(timeLabel, BorderLayout.WEST);
 		
-		// 금액 추가
+		// 湲덉븸 異붽�
 		
 		JLabel moneyLabel = new JLabel();
 		moneyLabel.setBorder(new EmptyBorder(0, 200, 0, 0));
 		String date = String.format("%02d/%02d", monthNumber, dayNumber);
 		System.out.println("day dialog [date] : " + date);
+		
+
+		
 		String money = MoneyManager.sharedInstance().getMoney(date);
 		System.out.println("day dialog [money] : " + money);
 		moneyLabel.setText(money);
@@ -136,7 +141,7 @@ public class DayDialog extends JDialog {
 		moneyLabel.setForeground(Color.WHITE);
 		headerPanel.add(moneyLabel, BorderLayout.CENTER);
 		
-		// 금액 추가 end
+		// 湲덉븸 異붽� end
 		
 		ImageIcon imgIcon = new ImageIcon("add.png");
 		addButton = new JLabel(new ImageIcon(imgIcon.getImage().getScaledInstance(26, 26, Image.SCALE_DEFAULT)));
@@ -219,6 +224,8 @@ public class DayDialog extends JDialog {
 	}
 
 	public void updateContent(JPanel content, Schedule s) {
+
+		
 		MouseListener buttonListner = new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {

@@ -25,7 +25,7 @@ public class PairView extends JFrame {
 
 	public PairView() {
 		super("휴대폰 번호 입력");
-
+ 
 		// font
 		saveButton.setFont(new Font("THEJung110", 0, 15));
 		enterNum.setFont(new Font("THEJung110", 0, 15));
@@ -48,12 +48,16 @@ public class PairView extends JFrame {
 				PairManager.sharedInstance().setPhoneNumber(num);
 				// 돈 정보 가져옴
 				ServerManager.sharedInstance().loadServer_moneyOnly(num);
+				
 				System.out.println(num);
 				@SuppressWarnings("unused")
 				SixDigitInputView input6Digit = new SixDigitInputView();
 				dispose();
 			}
+			
 		});
 	}
 
 }
+
+

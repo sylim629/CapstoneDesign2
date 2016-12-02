@@ -28,7 +28,10 @@ import javax.swing.event.ListSelectionListener;
 import javax.swing.table.AbstractTableModel;
 import javax.swing.table.DefaultTableCellRenderer;
 
+import manager.MoneyManager;
+import manager.PairManager;
 import manager.ScheduleManager;
+import manager.ServerManager;
 import model.Schedule;
 
 public class MonthView extends JPanel {
@@ -203,6 +206,8 @@ public class MonthView extends JPanel {
 					return;
 
 				if (selectedRow == row && selectedColumn == col) {
+					MoneyManager.sharedInstance().deleteMoneyList(); 
+					ServerManager.sharedInstance().loadServer_moneyOnly(PairManager.sharedInstance().getPhoneNumber());
 					DayDialog dialog = new DayDialog(mainFrame, calendarModel.getYear(), calendarModel.getMonth(),
 							((DayView) calendarModel.getValueAt(row, col)).getDay());
 					dialog.setVisible(true);
