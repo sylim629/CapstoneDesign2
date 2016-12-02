@@ -13,11 +13,11 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 public class VerifiedView extends JFrame {
-	JLabel label = new JLabel("ÀÎÁõ ¿Ï·á");
-	JButton okButton = new JButton("È®ÀÎ");
+	JLabel label = new JLabel("ì¸ì¦ì™„ë£Œ");
+	JButton okButton = new JButton("í™•ì¸");
 	
 	public VerifiedView (){
-		super("ÀÎÁõ ¿Ï·á");
+		super("ì¸ì¦ì™„ë£Œ");
 		
 		label.setFont(new Font("THEJung110", 0, 15));
 		okButton.setFont(new Font("THEJung110", 0, 15));
