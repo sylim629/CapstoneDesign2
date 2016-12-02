@@ -32,24 +32,24 @@ public class MoneyManager {
 	}
 	
 	public String getMoney(String date) {
-		String totalMoney = "0¿ø";
+		String totalMoney = "0ì›";
 		for (int i = 0; i < moneyList.size(); i++) {
 			if (moneyList.get(i).getDate().equals(date)) {
-				if (totalMoney.equals("0¿ø")) {
+				if (totalMoney.equals("0ì›")) {
 					totalMoney = moneyList.get(i).getMoney();
 				} else {
-					String tokens[] = moneyList.get(i).getMoney().split(",|\\¿ø");
+					String tokens[] = moneyList.get(i).getMoney().split(",|\\ì›");
 					String tempMoney = "";
 					for (int j = 0; j < tokens.length; j++)
 						tempMoney += tokens[j];
 					int moreMoney = Integer.parseInt(tempMoney);
-					tokens = totalMoney.split(",|\\¿ø");
+					tokens = totalMoney.split(",|\\ì›");
 					tempMoney = "";
 					for (int j = 0; j < tokens.length; j++)
 						tempMoney += tokens[j];
 					int tempTotalMoney = Integer.parseInt(tempMoney);
 					tempTotalMoney += moreMoney;
-					totalMoney = NumberFormat.getNumberInstance(Locale.US).format(tempTotalMoney) + "¿ø";
+					totalMoney = NumberFormat.getNumberInstance(Locale.US).format(tempTotalMoney) + "ì›";
 				}
 			}
 		}
