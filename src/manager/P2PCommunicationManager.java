@@ -130,8 +130,6 @@ public class P2PCommunicationManager {
         multicast_id = (PipeID) IDFactory.newPipeID(subgroup.getPeerGroupID(), multicast_name.getBytes());
 
         pipe_service = subgroup.getPipeService();
-//        pipe_service.createInputPipe(get_advertisement(unicast_id, false), this);
-//        pipe_service.createInputPipe(get_advertisement(multicast_id, true), this);
 
 
         discovery = subgroup.getDiscoveryService();

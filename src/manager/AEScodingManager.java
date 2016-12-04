@@ -20,7 +20,6 @@ public class AEScodingManager {
 		//generateSkey();
 
 		SecretKeySpec secretKey = new SecretKeySpec(secretKeyString.getBytes(),"AES");
-		//System.out.println("size : "+secretKey.);
 		encodeByAES(secretKey);
 	}
 	
